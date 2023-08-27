@@ -4,11 +4,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
     /* border: 1px red solid; */
 }
 
-:root {}
+:root {
+    --main-font: 'Open Sans', sans-serif;
+}
 
 html {
     font-size: 62.5%;
@@ -16,4 +17,5 @@ html {
 
 body {
     font-size: 2rem;
+    font-family: var(--main-font);
 }
