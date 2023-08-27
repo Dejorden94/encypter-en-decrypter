@@ -21,15 +21,19 @@ html {
 body {
     font-size: 2rem;
     font-family: var(--main-font);
+    padding: 4rem;
 }
 
 .encrypt {
-    width: 50rem;
-    aspect-ratio: 1/0.5;
+    width: 40rem;
+    aspect-ratio: 1/0.4;
     background: var(--encrypt-background);
     padding: 4rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    /* Trekt het element schuin */
+    /* transform: skewX(-8deg); */
+    clip-path: polygon(0 5%, 100% 0, 85% 100%, 0% 100%);
 }
 
 .encrypt__header {
