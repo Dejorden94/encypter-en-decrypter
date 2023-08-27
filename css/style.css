@@ -11,6 +11,7 @@
 :root {
     --main-font: 'Open Sans', sans-serif;
     --encrypt-background: #9336B4;
+    --font-color: #eee;
 }
 
 html {
@@ -33,6 +34,14 @@ body {
 
 .encrypt__header {
     height: 40%;
+}
+
+.encrypt__heading {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 200%;
+    text-transform: uppercase;
+    color: var(--font-color);
 }
 
 .encrypt__body {
