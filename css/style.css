@@ -3,12 +3,14 @@
 *::before {
     margin: 0;
     padding: 0;
+    /* border box zorgt ervoor dat bijvoorbeeld padding bij het elemnt wordt gerekend inplaats van dat het wordt toegevoegd aan een element */
     box-sizing: border-box;
     /* border: 1px red solid; */
 }
 
 :root {
     --main-font: 'Open Sans', sans-serif;
+    --encrypt-background: #9336B4;
 }
 
 html {
@@ -19,3 +21,24 @@ body {
     font-size: 2rem;
     font-family: var(--main-font);
 }
+
+.encrypt {
+    width: 50rem;
+    aspect-ratio: 1/0.5;
+    background: var(--encrypt-background);
+    padding: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.encrypt__header {
+    height: 40%;
+}
+
+.encrypt__body {
+    height: 60%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.encrypt__input {}
