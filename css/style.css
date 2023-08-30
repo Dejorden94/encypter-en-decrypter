@@ -22,7 +22,13 @@ html {
 body {
     font-size: 2rem;
     font-family: var(--main-font);
+    min-height: 100vh;
     padding: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .encrypt {
