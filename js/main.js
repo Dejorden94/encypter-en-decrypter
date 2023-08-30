@@ -2,8 +2,17 @@ function encrypt(messageToEncrypt) {
     let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
     let encryptedMessage = "";
     const possibleResults = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    //a -> 0
+    //b -> 1
+    //....
+    // z -> 25
     for (let i = 0; i < messageToEncrypt.length; i++) {
-
+        switch (messageToEncryptLowerCase[i]) {
+            case "c":
+                let numberInAlphabet = 2;
+                encryptedMessage = encryptedMessage + possibleResults[numberInAlphabet + 2];
+                break;
+        }
     }
     return encryptedMessage;
 }
@@ -105,7 +114,6 @@ encryptInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         this.value = encrypt(this.value);
         this.setAttribute("disabled", "");
-        console.log(keyInput.value);
     }
 });
 
