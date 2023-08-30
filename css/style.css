@@ -10,9 +10,10 @@
 
 :root {
     --main-font: 'Open Sans', sans-serif;
-    --encrypt-background: #9336B4;
+    --encrypt-background: #7091F5;
     --font-color: #eee;
-    --decrypt-background: #EC53B0;
+    --decrypt-background: #9336B4;
+    --key-background: #EC53B0;
 }
 
 html {
@@ -42,6 +43,10 @@ body {
 
 .encrypt--decrypt {
     background: var(--decrypt-background);
+}
+
+.encrypt--key {
+    background: var(--key-background);
 }
 
 .encrypt__header {
