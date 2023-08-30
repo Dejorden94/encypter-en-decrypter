@@ -1,7 +1,8 @@
 function encrypt(messageToEncrypt) {
+    let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
     let encryptedMessage = "";
     for (let i = 0; i < messageToEncrypt.length; i++) {
-        switch (messageToEncrypt[i]) {
+        switch (messageToEncryptLowerCase[i]) {
             case "a":
                 encryptedMessage = encryptedMessage + "c";
                 break;
@@ -80,11 +81,12 @@ function encrypt(messageToEncrypt) {
             case "z":
                 encryptedMessage = encryptedMessage + "b";
                 break;
-            case " ":
-                encryptedMessage = encryptedMessage + " ";
+            default:
+                //Als het karakter niet iets is uit he bovenstaande, dan is het het karakter wat het als was.
+                encryptedMessage = encryptedMessage + messageToEncryptLowerCase[i];
         }
     }
     console.log(encryptedMessage);
 }
 
-encrypt("code is gaaf!");
+encrypt("Code is gaaf!");
