@@ -6,12 +6,18 @@ function encrypt(messageToEncrypt) {
     //b -> 1
     //....
     // z -> 25
-    for (let i = 0; i < messageToEncrypt.length; i++) {
-        switch (messageToEncryptLowerCase[i]) {
-            case "c":
-                let numberInAlphabet = 2;
-                encryptedMessage = encryptedMessage + possibleResults[numberInAlphabet + 2];
-                break;
+    for (let i = 0; i < messageToEncryptLowerCase.length; i++) {
+        const indexOfChar = possibleResults.indexOf(messageToEncryptLowerCase[i]);
+        if (indexOfChar !== -1) {
+            let indexOfResult = indexOfChar + 2;
+            if (indexOfResult > 25) {
+                indexOfResult = indexOfResult - 25;
+            }
+            console.log(indexOfResult);
+            encryptedMessage = encryptedMessage + possibleResults[indexOfResult];
+        }
+        else {
+            encryptedMessage = encryptedMessage + messageToEncryptLowerCase[i];
         }
     }
     return encryptedMessage;
