@@ -1,4 +1,4 @@
-const encryptCard = document.querySelector("#js--encrypt");
+const encryptInput = document.querySelector("#js--encrypt");
 
 function encrypt(messageToEncrypt) {
     let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
@@ -90,5 +90,11 @@ function encrypt(messageToEncrypt) {
     }
     console.log(encryptedMessage);
 }
+
+encryptInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        console.log(this.value);
+    }
+})
 
 encrypt("Code is gaaf!");
