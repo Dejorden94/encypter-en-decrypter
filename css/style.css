@@ -12,6 +12,7 @@
     --main-font: 'Open Sans', sans-serif;
     --encrypt-background: #9336B4;
     --font-color: #eee;
+    --decrypt-background: #EC53B0;
 }
 
 html {
@@ -31,6 +32,10 @@ body {
     /* Trekt het element schuin */
     /* transform: skewX(-8deg); */
     clip-path: polygon(0 5%, 100% 0, 85% 100%, 0% 100%);
+}
+
+.encrypt--decrypt {
+    background: var(--decrypt-background);
 }
 
 .encrypt__header {
