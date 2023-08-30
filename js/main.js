@@ -88,13 +88,11 @@ function encrypt(messageToEncrypt) {
                 encryptedMessage = encryptedMessage + messageToEncryptLowerCase[i];
         }
     }
-    console.log(encryptedMessage);
+    return encryptedMessage;
 }
 
 encryptInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        console.log(this.value);
+        this.value = encrypt(this.value);
     }
 })
-
-encrypt("Code is gaaf!");
