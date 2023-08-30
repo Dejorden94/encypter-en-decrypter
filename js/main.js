@@ -1,3 +1,5 @@
+const encryptCard = document.querySelector("#js--encrypt");
+
 function encrypt(messageToEncrypt) {
     let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
     let encryptedMessage = "";
