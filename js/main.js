@@ -94,5 +94,6 @@ function encrypt(messageToEncrypt) {
 encryptInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         this.value = encrypt(this.value);
+        this.setAttribute("disabled", "");
     }
 })
