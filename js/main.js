@@ -3,8 +3,18 @@ const encryptInput = document.querySelector("#js--encrypt");
 const decryptInput = document.querySelector("#js--decrypt");
 function init() {
 
-    encryptInput.addEventListener("keydown", (event) => encryptionAndDecryptionListner(event, encrypt, encryptInput));
-    decryptInput.addEventListener("keydown", (event) => encryptionAndDecryptionListner(event, decrypt, decryptInput));
+    encryptInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            this.value = encryptOrDycrypt(this.value, "encrypt", checkKey(keyInput.value))
+            this.setAttribute("disabled", "")
+        }
+    });
+    decryptInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            this.value = encryptOrDycrypt(this.value, "decrypt", checkKey(keyInput.value))
+            this.setAttribute("disabled", "")
+        }
+    });
 
     keyInput.value = 2;
     encryptInput.value = "";
@@ -16,53 +26,42 @@ init();
 
 
 /*Functions*/
-function encrypt(messageToEncrypt, key) {
-    let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
-    let encryptedMessage = "";
-    const possibleResults = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    //a -> 0
-    //b -> 1
-    //....
-    // z -> 25
-    for (let i = 0; i < messageToEncryptLowerCase.length; i++) {
-        const indexOfChar = possibleResults.indexOf(messageToEncryptLowerCase[i]);
-        if (indexOfChar !== -1) {
-            let indexOfResult = indexOfChar + key;
-            if (indexOfResult > 25) {
-                indexOfResult = indexOfResult - 25;
-            }
-            encryptedMessage = encryptedMessage + possibleResults[indexOfResult];
-        }
-        else {
-            encryptedMessage = encryptedMessage + messageToEncryptLowerCase[i];
-        }
-    }
-    return encryptedMessage;
-}
 
-function decrypt(messageToDecrypt, key) {
-    let messageToDecryptLowerCase = messageToDecrypt.toLowerCase()
-    let decryptedMessage = "";
+function encryptOrDycrypt(message, encryptOrDycrypt, key) {
+    let messageToLowerCase = message.toLowerCase()
+    let returnMessage = "";
+    let indexOfResult = "";
     const possibleResults = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     //a -> 0
     //b -> 1
     //....
     // z -> 25
-    for (let i = 0; i < messageToDecryptLowerCase.length; i++) {
-        const indexOfChar = possibleResults.indexOf(messageToDecryptLowerCase[i]);
+    for (let i = 0; i < messageToLowerCase.length; i++) {
+        const indexOfChar = possibleResults.indexOf(messageToLowerCase[i]);
         if (indexOfChar !== -1) {
-            let indexOfResult = indexOfChar - key;
-            if (indexOfResult < 0) {
-                indexOfResult = indexOfResult + 25;
+            switch (encryptOrDycrypt) {
+                case "encrypt":
+                    indexOfResult = indexOfChar + key;
+                    if (indexOfResult > 25) {
+                        indexOfResult = indexOfResult - 25;
+                    }
+                    break;
+                case "decrypt":
+                    indexOfResult = indexOfChar - key;
+                    if (indexOfResult < 0) {
+                        indexOfResult = indexOfResult + 25;
+                    }
+                    break;
             }
-            decryptedMessage = decryptedMessage + possibleResults[indexOfResult];
+
+            returnMessage = returnMessage + possibleResults[indexOfResult];
         }
         else {
-            decryptedMessage = decryptedMessage + messageToDecryptLowerCase[i];
+            returnMessage = returnMessage + messageToLowerCase[i];
         }
     }
-    return decryptedMessage;
-}
+    return returnMessage;
+};
 
 function checkKey(key) {
     let parsedKey = parseInt(key);
@@ -71,11 +70,4 @@ function checkKey(key) {
         keyInput.value = 2;
     }
     return parsedKey;
-}
-
-function encryptionAndDecryptionListner(event, encryptOrDecryptFunction, input) {
-    if (event.key === "Enter") {
-        input.value = encryptOrDecryptFunction(input.value, checkKey(keyInput.value));
-        input.setAttribute("disabled", "");
-    }
 }
