@@ -49,6 +49,16 @@ body {
     background: var(--key-background);
 }
 
+.encrypt--key .encrypt__input {
+    width: 50rem;
+    border: none;
+}
+
+.encrypt--key .encrypt__body>div {
+    border-bottom: 0.3rem solid var(--font-color);
+    width: 100%;
+}
+
 .encrypt__header {
     height: 40%;
     padding-top: 2rem;
