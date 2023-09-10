@@ -14,6 +14,7 @@
     --font-color: #eee;
     --decrypt-background: #9336B4;
     --key-background: #EC53B0;
+    --background: #D7BBF5;
 }
 
 html {
@@ -30,6 +31,7 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 2rem;
+    background: var(--background);
 }
 
 .encrypt {
@@ -39,6 +41,9 @@ body {
     /* Trekt het element schuin */
     /* transform: skewX(-8deg); */
     clip-path: polygon(0 5%, 100% 0, 85% 100%, 0% 100%);
+    animation-name: fromLeft;
+    animation-duration: 1s;
+    will-change: transform;
 }
 
 .encrypt--decrypt {
@@ -47,6 +52,8 @@ body {
 
 .encrypt--key {
     background: var(--key-background);
+    animation-name: fromRight;
+    backface-visibility: hidden;
 }
 
 .encrypt--key .encrypt__input {
@@ -91,4 +98,28 @@ body {
     font-size: 80%;
     color: var(--font-color);
     border-bottom: 0.3rem solid var(--font-color);
+}
+
+@keyframes fromLeft {
+    from {
+        transform: translateX(-2rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fromRight {
+    from {
+        transform: translateX(2rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
