@@ -48,11 +48,19 @@ function decrypt(messageToDecrypt, key) {
     return decryptedMessage;
 }
 
+function checkKey(key) {
+    let parsedKey = parseInt(key);
+    if (parsedKey < 0 || !parsedKey > 0) {
+        parsedKey = 2;
+        keyInput.value = 2;
+    }
+    return parsedKey;
+}
 
 const encryptInput = document.querySelector("#js--encrypt");
 encryptInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        this.value = encrypt(this.value, Number(keyInput.value));
+        this.value = encrypt(this.value, checkKey(keyInput.value));
         this.setAttribute("disabled", "");
     }
 });
@@ -60,7 +68,7 @@ encryptInput.addEventListener("keydown", function (event) {
 const decryptInput = document.querySelector("#js--decrypt");
 decryptInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        this.value = decrypt(this.value, Number(keyInput.value));
+        this.value = decrypt(this.value, checkKey(keyInput.value));
         this.setAttribute("disabled", "");
     }
 });
