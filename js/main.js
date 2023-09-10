@@ -1,30 +1,21 @@
+const keyInput = document.querySelector("#js--key");
+const encryptInput = document.querySelector("#js--encrypt");
+const decryptInput = document.querySelector("#js--decrypt");
 function init() {
+
+    encryptInput.addEventListener("keydown", (event) => encryptionAndDecryptionListner(event, encrypt, encryptInput));
+    decryptInput.addEventListener("keydown", (event) => encryptionAndDecryptionListner(event, decrypt, decryptInput));
+
     keyInput.value = 2;
     encryptInput.value = "";
     decryptInput.value = "";
 
-
-    const encryptInput = document.querySelector("#js--encrypt");
-    encryptInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            this.value = encrypt(this.value, checkKey(keyInput.value));
-            this.setAttribute("disabled", "");
-        }
-    });
-
-    const decryptInput = document.querySelector("#js--decrypt");
-    decryptInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            this.value = decrypt(this.value, checkKey(keyInput.value));
-            this.setAttribute("disabled", "");
-        }
-    });
-
-    const keyInput = document.querySelector("#js--key");
 };
 
 init();
 
+
+/*Functions*/
 function encrypt(messageToEncrypt, key) {
     let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
     let encryptedMessage = "";
@@ -40,7 +31,6 @@ function encrypt(messageToEncrypt, key) {
             if (indexOfResult > 25) {
                 indexOfResult = indexOfResult - 25;
             }
-            console.log(indexOfResult);
             encryptedMessage = encryptedMessage + possibleResults[indexOfResult];
         }
         else {
@@ -65,7 +55,6 @@ function decrypt(messageToDecrypt, key) {
             if (indexOfResult < 0) {
                 indexOfResult = indexOfResult + 25;
             }
-            console.log(indexOfResult);
             decryptedMessage = decryptedMessage + possibleResults[indexOfResult];
         }
         else {
@@ -84,3 +73,9 @@ function checkKey(key) {
     return parsedKey;
 }
 
+function encryptionAndDecryptionListner(event, encryptOrDecryptFunction, input) {
+    if (event.key === "Enter") {
+        input.value = encryptOrDecryptFunction(input.value, checkKey(keyInput.value));
+        input.setAttribute("disabled", "");
+    }
+}
