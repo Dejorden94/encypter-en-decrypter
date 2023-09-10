@@ -1,3 +1,11 @@
+function init() {
+    keyInput.value = 2;
+    encryptInput.value = "";
+    decryptInput.value = "";
+};
+
+init();
+
 function encrypt(messageToEncrypt, key) {
     let messageToEncryptLowerCase = messageToEncrypt.toLowerCase()
     let encryptedMessage = "";
@@ -74,7 +82,3 @@ decryptInput.addEventListener("keydown", function (event) {
 });
 
 const keyInput = document.querySelector("#js--key");
-
-keyInput.value = 2;
-encryptInput.value = "";
-decryptInput.value = "";
