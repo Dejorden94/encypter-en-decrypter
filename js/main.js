@@ -2,6 +2,25 @@ function init() {
     keyInput.value = 2;
     encryptInput.value = "";
     decryptInput.value = "";
+
+
+    const encryptInput = document.querySelector("#js--encrypt");
+    encryptInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            this.value = encrypt(this.value, checkKey(keyInput.value));
+            this.setAttribute("disabled", "");
+        }
+    });
+
+    const decryptInput = document.querySelector("#js--decrypt");
+    decryptInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            this.value = decrypt(this.value, checkKey(keyInput.value));
+            this.setAttribute("disabled", "");
+        }
+    });
+
+    const keyInput = document.querySelector("#js--key");
 };
 
 init();
@@ -65,20 +84,3 @@ function checkKey(key) {
     return parsedKey;
 }
 
-const encryptInput = document.querySelector("#js--encrypt");
-encryptInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        this.value = encrypt(this.value, checkKey(keyInput.value));
-        this.setAttribute("disabled", "");
-    }
-});
-
-const decryptInput = document.querySelector("#js--decrypt");
-decryptInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        this.value = decrypt(this.value, checkKey(keyInput.value));
-        this.setAttribute("disabled", "");
-    }
-});
-
-const keyInput = document.querySelector("#js--key");
